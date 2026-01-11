@@ -1,0 +1,259 @@
+2026-01-11 19:25:06,725 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-11 19:25:06,725 - [33mPress CTRL+C to quit[0m
+2026-01-11 19:29:21,764 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-11 19:29:21,765 - [33mPress CTRL+C to quit[0m
+2026-01-11 19:29:38,022 - 127.0.0.1 - - [11/Jan/2026 19:29:38] "GET / HTTP/1.1" 200 -
+2026-01-11 19:29:38,399 - 127.0.0.1 - - [11/Jan/2026 19:29:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-01-11 19:30:22,464 - 127.0.0.1 - - [11/Jan/2026 19:30:22] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:23,075 - 127.0.0.1 - - [11/Jan/2026 19:30:23] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:29,803 - 127.0.0.1 - - [11/Jan/2026 19:30:29] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:30,068 - 127.0.0.1 - - [11/Jan/2026 19:30:30] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:30,395 - 127.0.0.1 - - [11/Jan/2026 19:30:30] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:30,721 - 127.0.0.1 - - [11/Jan/2026 19:30:30] "GET / HTTP/1.1" 200 -
+2026-01-11 19:30:31,024 - 127.0.0.1 - - [11/Jan/2026 19:30:31] "GET / HTTP/1.1" 200 -
+2026-01-11 19:31:37,220 - Exception on / [GET]
+Traceback (most recent call last):
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 2610, in get_connection
+    connection.can_read()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 1110, in can_read
+    return self._parser.can_read(timeout)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\_parsers\base.py", line 158, in can_read
+    return self._buffer and self._buffer.can_read(timeout)
+                            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\_parsers\socket.py", line 95, in can_read
+    return bool(self.unread_bytes()) or self._read_from_socket(
+                                        ~~~~~~~~~~~~~~~~~~~~~~^
+        timeout=timeout, raise_on_timeout=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\_parsers\socket.py", line 68, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 855, in connect_check_health
+    sock = self.retry.call_with_retry(
+        lambda: self._connect(), lambda error: self.disconnect(error)
+    )
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\retry.py", line 116, in call_with_retry
+    return do()
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 856, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ~~~~~~~~~~~~~^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 1306, in _connect
+    raise err
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 1290, in _connect
+    sock.connect(socket_address)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 878, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1253, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "C:\Users\bnurb\projects\ddos_guard.py", line 18, in ddos_protection
+    blocked_until = r.get(f"block:{fingerprint}")
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\commands\core.py", line 1923, in get
+    return self.execute_command("GET", name, keys=[name])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\client.py", line 657, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\client.py", line 663, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\utils.py", line 196, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 2617, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 846, in connect
+    self.connect_check_health(check_health=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\bnurb\AppData\Local\Programs\Python\Python313\Lib\site-packages\redis\connection.py", line 863, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2026-01-11 19:31:37,235 - 127.0.0.1 - - [11/Jan/2026 19:31:37] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2026-01-11 19:33:46,026 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,122 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,160 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,196 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,235 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,276 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,313 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,352 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,393 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,426 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,464 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,507 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,545 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,587 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,652 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,693 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,734 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,778 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,816 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,852 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,893 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,928 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:46,966 - 127.0.0.1 - - [11/Jan/2026 19:33:46] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,008 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,044 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,085 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,124 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,162 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,200 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,234 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "GET / HTTP/1.1" 200 -
+2026-01-11 19:33:47,267 - DDoS detected | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.7462
+2026-01-11 19:33:47,267 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 429 -
+2026-01-11 19:33:47,349 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,364 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,379 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,394 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,411 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,426 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,441 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,458 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,478 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,491 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,506 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,520 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,537 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,551 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,566 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,581 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,598 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,613 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:33:47,630 - 127.0.0.1 - - [11/Jan/2026 19:33:47] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:34:08,066 - 127.0.0.1 - - [11/Jan/2026 19:34:08] "GET / HTTP/1.1" 200 -
+2026-01-11 19:34:08,730 - 127.0.0.1 - - [11/Jan/2026 19:34:08] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,656 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,700 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,743 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,783 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,819 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,860 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,897 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,929 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:12,973 - 127.0.0.1 - - [11/Jan/2026 19:36:12] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,007 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,044 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,082 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,120 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,156 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,193 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,234 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,271 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,306 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,347 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,382 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,421 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,462 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,499 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,539 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,582 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,623 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,664 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,700 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,740 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,782 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "GET / HTTP/1.1" 200 -
+2026-01-11 19:36:13,822 - DDoS detected | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.7462
+2026-01-11 19:36:13,823 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 429 -
+2026-01-11 19:36:13,847 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,860 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,875 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,890 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,907 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,922 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,936 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,951 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,968 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:13,985 - 127.0.0.1 - - [11/Jan/2026 19:36:13] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,003 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,018 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,033 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,048 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,062 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,076 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,091 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,106 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:36:14,122 - 127.0.0.1 - - [11/Jan/2026 19:36:14] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:39:29,919 - 127.0.0.1 - - [11/Jan/2026 19:39:29] "GET / HTTP/1.1" 200 -
+2026-01-11 19:39:51,192 - 127.0.0.1 - - [11/Jan/2026 19:39:51] "GET / HTTP/1.1" 200 -
+2026-01-11 19:39:52,806 - 127.0.0.1 - - [11/Jan/2026 19:39:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:41:19,710 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-11 19:41:19,711 - [33mPress CTRL+C to quit[0m
+2026-01-11 19:41:21,910 - 127.0.0.1 - - [11/Jan/2026 19:41:21] "GET / HTTP/1.1" 200 -
+2026-01-11 19:41:22,542 - 127.0.0.1 - - [11/Jan/2026 19:41:22] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,753 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,823 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,861 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,893 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,927 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:52,967 - 127.0.0.1 - - [11/Jan/2026 19:43:52] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:53,001 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:53,039 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:53,078 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:53,112 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "GET / HTTP/1.1" 200 -
+2026-01-11 19:43:53,148 - DDoS detected | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.7462
+2026-01-11 19:43:53,149 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 429 -
+2026-01-11 19:43:53,211 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,224 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,236 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,250 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,267 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,283 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,298 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,313 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,331 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,348 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,363 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,378 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,393 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,408 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,426 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,440 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,456 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,469 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,485 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,501 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,516 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,530 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,543 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,559 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,574 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,592 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,606 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,619 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,635 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,652 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,668 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,683 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,711 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,743 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,759 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,774 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,788 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,802 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 19:43:53,815 - 127.0.0.1 - - [11/Jan/2026 19:43:53] "[31m[1mGET / HTTP/1.1[0m" 403 -
+2026-01-11 20:04:25,474 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-11 20:04:25,474 - [33mPress CTRL+C to quit[0m
+2026-01-11 20:10:38,279 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-11 20:10:38,279 - [33mPress CTRL+C to quit[0m
