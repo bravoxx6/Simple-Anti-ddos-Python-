@@ -6,7 +6,7 @@ def test_normal_request(client):
 
 
 def test_rate_limit_trigger(client):
-    # Превышаем лимит
+    # Exceed the request limit
     for _ in range(35):
         response = client.get("/")
 
@@ -38,7 +38,7 @@ def test_unblock_after_ttl(client):
     for _ in range(40):
         client.get("/")
 
-    time.sleep(3)  # если BLOCK_TIME уменьшен для тестов
+    time.sleep(3)  # Wait for BLOCK_TIME to expire
 
     response = client.get("/")
     assert response.status_code in (200, 429)

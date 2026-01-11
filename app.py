@@ -12,5 +12,5 @@ def index():
 def health():
     return {"status": "ok"}
 
-app.run()
+app.run() # REMOVE WHILE TESTING
 

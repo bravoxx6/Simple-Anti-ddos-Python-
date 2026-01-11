@@ -6,7 +6,7 @@ from config import REDIS_HOST, REDIS_PORT
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 def reset_redis():
-    r.flushdb()  # полностью очищаем для теста
+    r.flushdb()  # CLEAR FOR TEST PURPOSES ONLY
 
 @pytest.fixture(autouse=True)
 def clear_redis():

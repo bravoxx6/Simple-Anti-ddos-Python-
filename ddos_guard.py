@@ -14,12 +14,12 @@ def ddos_protection():
 
     now = int(time.time())
 
-    # Проверка блокировки
+    # check block
     blocked_until = r.get(f"block:{fingerprint}")
     if blocked_until and now < int(blocked_until):
         abort(403)
 
-    # Учёт запросов
+    # log request
     key = f"req:{fingerprint}"
     r.lpush(key, now)
     r.ltrim(key, 0, REQUEST_LIMIT)
