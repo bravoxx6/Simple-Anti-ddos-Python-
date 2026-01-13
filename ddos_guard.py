@@ -1,11 +1,17 @@
 import time
 import redis
 from flask import request, abort
+import requests
 from config import *
 from logger import log_attack
 from fingerprint import get_fingerprint
-
+from firewall import block_ip
+import fingerprint
+from unblock import unblock_ip
+import threading
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+
+
 
 def ddos_protection():
     ip = request.remote_addr
@@ -29,5 +35,8 @@ def ddos_protection():
 
     if requests > REQUEST_LIMIT:
         r.setex(f"block:{fingerprint}", BLOCK_TIME, now + BLOCK_TIME)
+        block_ip(ip)
         log_attack(f"DDoS detected | IP: {ip} | UA: {ua}")
         abort(429)
+        threading.Thread(target=unblock_ip, args=(ip, BLOCK_TIME), daemon=True).start()
+           
