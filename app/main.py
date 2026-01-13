@@ -1,5 +1,5 @@
 from flask import Flask
-from ddos_guard import ddos_protection
+from app.ddos_guard import ddos_protection
 
 app = Flask(__name__)
 app.before_request(ddos_protection)
@@ -12,5 +12,6 @@ def index():
 def health():
     return {"status": "ok"}
 
-app.run() # REMOVE WHILE TESTING
+if __name__ == "__main__":
+    app.run() # REMOVE WHILE TESTING
 
