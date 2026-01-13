@@ -1,5 +1,5 @@
 from flask import Flask
-from app.ddos_guard import ddos_protection
+from ddos_guard import ddos_protection # ADD .app if needed
 
 app = Flask(__name__)
 app.before_request(ddos_protection)

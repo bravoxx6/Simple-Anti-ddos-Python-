@@ -745,3 +745,6 @@
 2026-01-14 00:24:30,867 - DDoS detected | IP: 127.0.0.1 | UA: Werkzeug/3.1.2
 2026-01-14 00:24:31,019 - Skip blocking whitelisted IP: 127.0.0.1
 2026-01-14 00:24:31,019 - DDoS detected | IP: 127.0.0.1 | UA: Werkzeug/3.1.2
+2026-01-14 00:30:24,244 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-14 00:30:24,244 - [33mPress CTRL+C to quit[0m

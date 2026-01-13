@@ -1,12 +1,12 @@
 import time
 import redis
 from flask import request, abort
-from app.config import *
-from app.logger import log_attack
-from app.fingerprint import get_fingerprint
-from app.firewall import block_ip
-import app.fingerprint as fingerprint
-from app.unblock import unblock_ip
+from config import * # ADD .app if needed
+from logger import log_attack # ADD .app if needed
+from fingerprint import get_fingerprint     # ADD .app if needed
+from firewall import block_ip # ADD .app if needed
+import fingerprint as fingerprint # ADD .app if needed
+from unblock import unblock_ip # ADD .app if needed
 import threading
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
